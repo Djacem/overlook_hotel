@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${hotelName}">Hôtel Paradisiaque</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0 30px 0;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: white;
+            background-color: #ff7e5f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .links a:hover {
+            background-color: #feb47b;
+        }
+
+        section {
+            padding: 40px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .chambre-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .chambre-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            width: 220px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .chambre-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .chambre-card h3 {
+            margin-top: 0;
+            color: #ff7e5f;
+        }
+
+        .chambre-card p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 th:text="${hotelName}">Hôtel Paradisiaque</h1>
+    <p th:text="${description}">Bienvenue dans le projet de gestion hôtelière réalisé avec Java Spring Boot.</p>
+</header>
+
+<section>
+    <h2>Présentation des fonctionnalités</h2>
+    <div class="features">
+        <div class="feature-card" th:each="feature : ${features}" th:text="${feature}">Fonctionnalité</div>
+    </div>
+</section>
+
+<section>
+    <h2>Chambres disponibles</h2>
+    <div class="chambre-cards">
+        <div class="chambre-card" th:each="chambre : ${chambres}">
+            <h3 th:text="'Chambre ' + ${chambre.numero}">Chambre 101</h3>
+            <p th:text="'Type : ' + ${chambre.type}">Type : Single</p>
+            <p th:text="'Prix : $' + ${chambre.prix}">Prix : $50</p>
+            <p th:text="${chambre.disponible} ? 'Disponible' : 'Occupée'">Disponible</p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
